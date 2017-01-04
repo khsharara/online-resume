@@ -20,7 +20,7 @@ var bio = {
         ["Python", 1],
         ["mySQL", 1]
     ],
-}
+};
 
 //creates an education object
 var education = {
@@ -40,7 +40,7 @@ var education = {
         "dates": "2016 - present",
         "url": "https://www.udacity.com/degrees/nd001/summary"
     }]
-}
+};
 
 //creates a work object
 var work = {
@@ -63,7 +63,7 @@ var work = {
         "dates": "2013",
         "description": "The first “real” job I ever had was with IBM. It was the perfect opportunity for me to gain exposure to the corporate world and really find myself before committing to pursuing a specific degree. During my 8 months at IBM, I oversaw the creation and maintenance of tens of thousands of ledger accounts that were used to support IBM accountants across the Americas. I was given the opportunity to write technical tutorials to help migrate ledger users to new systems."
     }]
-}
+};
 
 //creates a projects object
 var projects = {
@@ -92,7 +92,7 @@ var projects = {
             "images/cleverLineUserSpending.png"
         ]
     }]
-}
+};
 
 
 // projects.display();
@@ -154,12 +154,12 @@ bio.display = function() {
             for (i = 0; i < skill[1]; i++) {
                 formattedSkillData = formattedSkillData.replace('skill-rate-off', 'skill-rate-on');
                 console.log(skill[1], skill[0]);
-            };
+            }
             $("#skills").append(formattedSkillData);
 
         });
     }
-}
+};
 
 //populates HTML with work object
 work.display = function() {
@@ -185,7 +185,7 @@ work.display = function() {
             $(".work-entry:last").append(formattedWorkDescription);
         });
     }
-}
+};
 
 
 //populates HTML with education.school and education.onlineCourses object
@@ -235,7 +235,7 @@ education.display = function() {
 
         });
     }
-}
+};
 
 //populate HTML with projects from projects object
 projects.display = function() {
@@ -262,7 +262,7 @@ projects.display = function() {
             }
         });
     }
-}
+};
 
 //populate HTML with header and contact info
 bio.displayFooter = function() {
@@ -283,7 +283,7 @@ bio.displayFooter = function() {
         var formattedLocation = HTMLlocation.replace("%data%", bio.contacts.location);
         $("#footerContacts").append(formattedLocation);
     }
-}
+};
 
 //populates HTML with googleMap
 $("#mapDiv").append(googleMap);
@@ -300,23 +300,24 @@ bio.displayFooter();
 
 //not used currently: converts normal US name to internatinalized version
 // function inName() {
-// 	var fullName = "khalid sharara";
+//  var fullName = "khalid sharara";
 
-// 	//seperates the fullName into firstName and lastName
-// 	var firstName = fullName.split(" ")[0];
-// 	var lastName = fullName.split(" ")[1];
+//  //seperates the fullName into firstName and lastName
+//  var firstName = fullName.split(" ")[0];
+//  var lastName = fullName.split(" ")[1];
 
-// 	//converts names to internationalized version
-// 	var intFirstName = firstName[0].toUpperCase() + firstName.slice(1);
-// 	var intLastName = lastName.toUpperCase();
-// 	var intFullName = intFirstName + " " + intLastName;
+//  //converts names to internationalized version
+//  var intFirstName = firstName[0].toUpperCase() + firstName.slice(1);
+//  var intLastName = lastName.toUpperCase();
+//  var intFullName = intFirstName + " " + intLastName;
 
-// 	return(intFullName);
+//  return(intFullName);
 // }
 
 //>>>>EXTRAS<<<<//
 //logs location of screen click
 // $(document).click(function(loc) {
-// 	//console.log(loc);
-// 	logClicks(loc.pageX, loc.pageY);
+//  //console.log(loc);
+//  logClicks(loc.pageX, loc.pageY);
 // });
+
