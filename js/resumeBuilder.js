@@ -105,15 +105,30 @@ var projects = {
 bio.display = function() {
     if (bio.name) {
         // ROLE
-        var formattedHeaderRole = HTMLheaderRole.replace("%data%", bio.role);
-        $("#header").prepend(formattedHeaderRole);
+        // var formattedHeaderRole = HTMLheaderRole.replace("%data%", bio.role);
+        // $("#header").prepend(formattedHeaderRole);
+
+        // // NAME
+        // var formattedHeaderName = HTMLheaderName.replace("%data%", bio.name);
+        // $("#header").prepend(formattedHeaderName);
+
+        // // BIOPIC
+        // var formattedBioPic = HTMLbioPic.replace("%data%", bio.biopic);
+        // $("#header").append(formattedBioPic);
+
+                var formattedHeaderRole = HTMLheaderRole.replace("%data%", bio.role);
 
         // NAME
         var formattedHeaderName = HTMLheaderName.replace("%data%", bio.name);
-        $("#header").prepend(formattedHeaderName);
 
         // BIOPIC
         var formattedBioPic = HTMLbioPic.replace("%data%", bio.biopic);
+
+        $("#header").prepend(formattedHeaderRole, formattedHeaderName);
+
+        // NAME
+
+        // BIOPIC
         $("#header").append(formattedBioPic);
 
         // WELCOME MESSAGE
@@ -122,19 +137,18 @@ bio.display = function() {
 
         // MOBILE
         var formattedMobile = HTMLmobile.replace("%data%", bio.contacts.mobile);
-        $("#topContacts").append(formattedMobile);
 
         // EMAIL
         var formattedEmail = HTMLemail.replace("%data%", bio.contacts.email);
-        $("#topContacts").append(formattedEmail);
-
+        
         // GITHUB
         var formattedGitHub = HTMLgithub.replace("%data%", bio.contacts.github);
-        $("#topContacts").append(formattedGitHub);
 
         // LOCATION
         var formattedLocation = HTMLlocation.replace("%data%", bio.contacts.location);
-        $("#topContacts").append(formattedLocation);
+
+        $("#topContacts").append(formattedMobile, formattedEmail, formattedGitHub, formattedLocation);
+
     }
 
     //populate HTML with skills from bio object
