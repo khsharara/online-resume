@@ -13,7 +13,6 @@ var bio = {
         "github": "khsharara",
         "location": "DC Metro Area",
     },
-    // "skills": ["HTML/CSS", "JavaScript", "Python", "mySQL"],
     "skills": [
         ["HTML/CSS", 2],
         ["JavaScript", 1],
@@ -34,6 +33,7 @@ var education = {
         "dates": "2011 - 2016",
         "url": "http://www.bit.vt.edu"
     }],
+
     "onlineCourses": [{
         "title": "Front-end Web Developer Nanodegree",
         "school": "Udacity",
@@ -84,7 +84,6 @@ var projects = {
         "title": "CleverLine",
         "dates": "2014",
         "description": "CleverLine was my first software project and it involved building a student-centric campus-food ordering system. The requirements included using VB.NET and Microsoft Access to build the application. Although the interface does not look that pretty (yikes!), I am proud to say our focus on features led our project to win first place in our classroom competition. My favorite feature, Location Express, allowed students to input their current and next classroom destinations and receive information on the dining hall that is most conveniently placed between the two classrooms. This was achieved by integrating a linear programming function that uses the coordinates of different campus buildings to map out different routes before returning a decision. During this project, I worked alongside two other students while I assumed the team lead and lead developer positions.",
-        // "description": "CleverLine was my first s",
         "images": [
             "images/cleverLineLogo.png",
             "images/cleverLinePlaceOrder.png",
@@ -94,29 +93,12 @@ var projects = {
     }]
 };
 
-
-// projects.display();
-
-//not used currently: calls function that internationalizes Name
-//inName();
-
 //>>>>MANIPULATES HTML<<<<//
 //populate HTML with header and contact info
 bio.display = function() {
     if (bio.name) {
         // ROLE
-        // var formattedHeaderRole = HTMLheaderRole.replace("%data%", bio.role);
-        // $("#header").prepend(formattedHeaderRole);
-
-        // // NAME
-        // var formattedHeaderName = HTMLheaderName.replace("%data%", bio.name);
-        // $("#header").prepend(formattedHeaderName);
-
-        // // BIOPIC
-        // var formattedBioPic = HTMLbioPic.replace("%data%", bio.biopic);
-        // $("#header").append(formattedBioPic);
-
-                var formattedHeaderRole = HTMLheaderRole.replace("%data%", bio.role);
+        var formattedHeaderRole = HTMLheaderRole.replace("%data%", bio.role);
 
         // NAME
         var formattedHeaderName = HTMLheaderName.replace("%data%", bio.name);
@@ -125,10 +107,6 @@ bio.display = function() {
         var formattedBioPic = HTMLbioPic.replace("%data%", bio.biopic);
 
         $("#header").prepend(formattedHeaderRole, formattedHeaderName);
-
-        // NAME
-
-        // BIOPIC
         $("#header").append(formattedBioPic);
 
         // WELCOME MESSAGE
@@ -147,8 +125,7 @@ bio.display = function() {
         // LOCATION
         var formattedLocation = HTMLlocation.replace("%data%", bio.contacts.location);
 
-        $("#topContacts").append(formattedMobile, formattedEmail, formattedGitHub, formattedLocation);
-
+        $("#topContacts, #footerContacts").append(formattedMobile, formattedEmail, formattedGitHub, formattedLocation);
     }
 
     //populate HTML with skills from bio object
@@ -159,10 +136,9 @@ bio.display = function() {
         bio.skills.forEach(function(skill) {
 
             var formattedSkill = HTMLskills.replace("%data%", skill[0]);
-            // $("#skills").append(formattedSkill);
+
             //TODO: print new skill-rate-* divs using a loop of some sort
             var formattedSkillData = formattedSkill.replace("%skillData%", '<div class="skill-rate-off"></div><div class="skill-rate-off"></div><div class="skill-rate-off"></div> <div class="skill-rate-off"></div>');
-            // console.log(formattedSkillData);
 
             //loop through the formattedSkillData and fill in the skill bar to match the skill level supplied
             for (i = 0; i < skill[1]; i++) {
@@ -184,19 +160,18 @@ work.display = function() {
             var formattedWorkEmployer = HTMLworkEmployer.replace("%data%", job.employer);
             var formattedWorkTitle = HTMLworkTitle.replace("%data%", job.title);
             var formattedEmployerTitle = formattedWorkEmployer + formattedWorkTitle;
-            $(".work-entry:last").append(formattedEmployerTitle);
 
             // LOCATION
             var formattedWorkLocation = HTMLworkLocation.replace("%data%", job.location);
-            $(".work-entry:last").append(formattedWorkLocation);
 
             // DATES
             var formattedWorkDates = HTMLworkDates.replace("%data%", job.dates);
-            $(".work-entry:last").append(formattedWorkDates);
 
             // DESCRIPTION
             var formattedWorkDescription = HTMLworkDescription.replace("%data%", job.description);
-            $(".work-entry:last").append(formattedWorkDescription);
+
+            $(".work-entry:last").append(formattedEmployerTitle, formattedWorkLocation, formattedWorkDates, formattedWorkDescription);
+
         });
     }
 };
@@ -205,22 +180,22 @@ work.display = function() {
 //populates HTML with education.school and education.onlineCourses object
 education.display = function() {
     if (education.schools) {
-        $("#education").append(HTMLschoolStart);
         education.schools.forEach(function(school) {
-            // NAME + DEGREE
-            var formattedSchoolName = HTMLschoolName.replace("%data%", school.name);
+            $("#education").append(HTMLschoolStart);
+
+            // NAME + DEGREE + SCHOOL URL
+            var formattedSchoolName = HTMLschoolName.replace("%data%", school.name).replace("#", school.url);
             var formattedSchoolDegree = HTMLschoolDegree.replace("%data%", school.degree);
             var formattedSchoolNameAndDegree = formattedSchoolName + formattedSchoolDegree;
             $(".education-entry:last").append(formattedSchoolNameAndDegree);
 
             // DATES
             var formattedSchoolDates = HTMLschoolDates.replace("%data%", school.dates);
-            $(".education-entry:last").append(formattedSchoolDates);
 
             // LOCATION
             var formattedSchoolLocation = HTMLschoolLocation.replace("%data%", school.location);
-            $(".education-entry:last").append(formattedSchoolLocation);
 
+            $(".education-entry:last").append(formattedSchoolDates, formattedSchoolLocation);
 
             // MAJORS
             for (i = 0; i < school.majors.length; i++) {
@@ -230,25 +205,25 @@ education.display = function() {
 
         });
     }
+
+    // populate html with online courses
     if (education.onlineCourses) {
         $(".education-entry:last").append(HTMLonlineClasses);
         education.onlineCourses.forEach(function(onlineCourse) {
-            // TITLE + SCHOOL
-            var formattedOnlineTitle = HTMLonlineTitle.replace("%data%", onlineCourse.title);
+            // TITLE + SCHOOL + URL
+            var formattedOnlineTitle = HTMLonlineTitle.replace("%data%", onlineCourse.title).replace("#", onlineCourse.url);
             var formattedOnlineSchool = HTMLonlineSchool.replace("%data%", onlineCourse.school);
             var formattedOnlineTitleAndSchool = formattedOnlineTitle + formattedOnlineSchool;
             $(".education-entry:last").append(formattedOnlineTitleAndSchool);
 
             // DATES
             var formattedOnlineDates = HTMLonlineDates.replace("%data%", onlineCourse.dates);
+
             $(".education-entry:last").append(formattedOnlineDates);
-
-            // URL
-            var formattedOnlineURL = HTMLonlineURL.replace("%data%", onlineCourse.url);
-            $(".education-entry:last").append(formattedOnlineURL);
-
         });
     }
+
+
 };
 
 //populate HTML with projects from projects object
@@ -259,15 +234,14 @@ projects.display = function() {
             $("#projects").append(HTMLprojectStart);
             // TITLE
             var formattedProjectTitle = HTMLprojectTitle.replace("%data%", project.title);
-            $(".project-entry:last").append(formattedProjectTitle);
 
             // DATES
             var formattedProjectDates = HTMLprojectDates.replace("%data%", project.dates);
-            $(".project-entry:last").append(formattedProjectDates);
 
             // DESCRIPTION
             var formattedProjectDescription = HTMLprojectDescription.replace("%data%", project.description);
-            $(".project-entry:last").append(formattedProjectDescription);
+
+            $(".project-entry:last").append(formattedProjectTitle, formattedProjectDates, formattedProjectDescription);
 
             // IMAGES
             for (i = 0; i < project.images.length; i++) {
@@ -275,27 +249,6 @@ projects.display = function() {
                 $(".project-entry:last").append(formattedProjectImage);
             }
         });
-    }
-};
-
-//populate HTML with header and contact info
-bio.displayFooter = function() {
-    if (bio.name) {
-        // MOBILE
-        var formattedMobile = HTMLmobile.replace("%data%", bio.contacts.mobile);
-        $("#footerContacts").append(formattedMobile);
-
-        // EMAIL
-        var formattedEmail = HTMLemail.replace("%data%", bio.contacts.email);
-        $("#footerContacts").append(formattedEmail);
-
-        // GITHUB
-        var formattedGitHub = HTMLgithub.replace("%data%", bio.contacts.github);
-        $("#footerContacts").append(formattedGitHub);
-
-        // LOCATION
-        var formattedLocation = HTMLlocation.replace("%data%", bio.contacts.location);
-        $("#footerContacts").append(formattedLocation);
     }
 };
 
@@ -307,31 +260,3 @@ bio.display();
 work.display();
 education.display();
 projects.display();
-bio.displayFooter();
-
-//not used currently: adds internationalizeButton to the main div
-//$('#main').append(internationalizeButton);
-
-//not used currently: converts normal US name to internatinalized version
-// function inName() {
-//  var fullName = "khalid sharara";
-
-//  //seperates the fullName into firstName and lastName
-//  var firstName = fullName.split(" ")[0];
-//  var lastName = fullName.split(" ")[1];
-
-//  //converts names to internationalized version
-//  var intFirstName = firstName[0].toUpperCase() + firstName.slice(1);
-//  var intLastName = lastName.toUpperCase();
-//  var intFullName = intFirstName + " " + intLastName;
-
-//  return(intFullName);
-// }
-
-//>>>>EXTRAS<<<<//
-//logs location of screen click
-// $(document).click(function(loc) {
-//  //console.log(loc);
-//  logClicks(loc.pageX, loc.pageY);
-// });
-
