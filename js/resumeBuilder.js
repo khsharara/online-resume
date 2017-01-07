@@ -17,7 +17,7 @@ var bio = {
         ["HTML/CSS", 2],
         ["JavaScript", 1],
         ["Python", 1],
-        ["mySQL", 1]
+        ["MySQL", 1]
     ],
 };
 
