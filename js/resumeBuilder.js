@@ -143,7 +143,6 @@ bio.display = function() {
             //loop through the formattedSkillData and fill in the skill bar to match the skill level supplied
             for (i = 0; i < skill[1]; i++) {
                 formattedSkillData = formattedSkillData.replace('skill-rate-off', 'skill-rate-on');
-                console.log(skill[1], skill[0]);
             }
             $("#skills").append(formattedSkillData);
 
